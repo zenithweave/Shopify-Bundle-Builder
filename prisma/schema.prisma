@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Bundle {
+  id            String        @id @default(cuid())
+  shopId        String
+  title         String
+  description   String?
+  discountType  DiscountType
+  discountValue Float
+  minProducts   Int
+  maxProducts   Int
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  // Relations
+  products      BundleProduct[]
+  analytics     BundleAnalytics[]
+  settings      MerchantSettings?
+  
+  @@index([shopId])
+  @@index([isActive])
+}
+
+model BundleProduct {
+  id           String  @id @default(cuid())
+  bundleId     String
+  productId    String  // Shopify product GID
+  variantId    String? // Specific variant if needed
+  required     Boolean @default(false)
+  maxQuantity  Int     @default(1)
+  position     Int
+  
+  // Relations
+  bundle       Bundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  
+  @@index([bundleId])
+  @@index([productId])
+}
+
+model BundleAnalytics {
+  id              String   @id @default(cuid())
+  bundleId        String
+  orderId         String   // Shopify order ID
+  totalValue      Float
+  discountApplied Float
+  productsCount   Int
+  createdAt       DateTime @default(now())
+  
+  // Relations
+  bundle          Bundle   @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  
+  @@index([bundleId])
+  @@index([orderId])
+  @@index([createdAt])
+}
+
+model MerchantSettings {
+  id              String   @id @default(cuid())
+  shopId          String   @unique
+  planType        String   @default("free")
+  brandingEnabled Boolean  @default(true)
+  customCss       String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  bundles         Bundle[]
+  
+  @@index([shopId])
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}

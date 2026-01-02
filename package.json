@@ -1,0 +1,75 @@
+{
+  "name": "zenith-bundle-builder",
+  "version": "1.0.0",
+  "description": "Premium Shopify app for creating discounted product bundles",
+  "main": "build/server/index.js",
+  "scripts": {
+    "dev": "remix dev",
+    "build": "remix build",
+    "start": "remix-serve build",
+    "typecheck": "tsc",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "shopify:dev": "shopify app dev",
+    "shopify:deploy": "shopify app deploy"
+  },
+  "keywords": [
+    "shopify",
+    "bundle",
+    "discount",
+    "ecommerce",
+    "remix",
+    "react",
+    "polaris"
+  ],
+  "author": {
+    "name": "Mostafa Magdy",
+    "email": "hi@zenithweave.com",
+    "url": "https://zenithweave.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "@remix-run/node": "^2.8.1",
+    "@remix-run/react": "^2.8.1",
+    "@remix-run/serve": "^2.8.1",
+    "@shopify/polaris": "^12.5.0",
+    "@shopify/shopify-app-remix": "^2.8.0",
+    "@shopify/shopify-app-remix-server": "^0.0.3",
+    "isbot": "^5.1.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.8.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "prisma": "^5.7.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenithweave/Shopify-Bundle-Builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zenithweave/Shopify-Bundle-Builder/issues"
+  },
+  "homepage": "https://zenithweave.com"
+}
