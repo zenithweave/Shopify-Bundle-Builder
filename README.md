@@ -128,4 +128,4 @@ For support and inquiries:
 - Website: zenithweave.com
 
 ---
-*Crafted with ❤️ by Zenith Weave*
+*Crafted with ❤️ by Zenith Weave* ❤️
